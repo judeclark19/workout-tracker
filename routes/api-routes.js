@@ -16,6 +16,16 @@ module.exports = function (app) {
       });
   });
 
+  app.post("/api/workouts", (req, res) => {
+    db.Workout.create(req.body)
+      .then((newWorkout) => {
+        res.json(newWorkout);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  });
+
   app.put("/api/workouts/:id", function (req, res) {
     db.Workout.findByIdAndUpdate(
       req.params.id,
