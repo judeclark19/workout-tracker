@@ -45,4 +45,15 @@ module.exports = function (app) {
         });
       });
   });
+
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .limit(7)
+      .then((foundWorkout) => {
+        res.json(foundWorkout);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  });
 };
