@@ -41,14 +41,8 @@ app.get("/api/config", (req, res) => {
   res.json({ success: "Workout homework connected" });
 });
 
-app.get("/api/workouts", (req, res) => {
-  db.Workout.find({}).then((result) => {
-    res.json(result);
-  });
-});
-
-// require("./routes/html-routes.js")(app);
-// require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
