@@ -15,4 +15,20 @@ module.exports = function (app) {
         });
       });
   });
+
+  app.put("/api/workouts/:id", function (req, res) {
+    db.Workout.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then((workout) => {
+        // workout.exercises.push(req.body);
+        res.json(workout);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to retrieve workout.",
+        });
+      });
+  });
 };
